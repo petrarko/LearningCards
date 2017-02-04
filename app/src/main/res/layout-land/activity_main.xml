@@ -58,4 +58,14 @@
         android:layout_above="@+id/next"
         android:layout_alignParentRight="true"
         android:layout_alignParentEnd="true" />
+
+    <ImageView
+        android:layout_width="10dp"
+        android:layout_height="200dp"
+        android:id="@+id/imageView"
+        app:srcCompat="@android:color/holo_green_light"
+        android:layout_alignParentRight="true"
+        android:layout_alignParentEnd="true"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentStart="true" />
 </RelativeLayout>
