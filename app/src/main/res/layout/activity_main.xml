@@ -13,7 +13,6 @@
     android:background="@color/colorAccent"
     tools:context="com.example.aguitelson.helloworld.MainActivity">
 
-
     <Button
         android:text="Загрузить"
         android:layout_width="wrap_content"
@@ -62,13 +61,11 @@
 
 
     <ImageView
-        android:layout_width="30dp"
-        android:layout_height="400dp"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_above="@+id/show"
         app:srcCompat="@android:color/holo_green_light"
         android:id="@+id/imageView"
-        android:layout_alignParentRight="true"
-        android:layout_alignParentEnd="true"
-        android:layout_alignParentLeft="true"
-        android:layout_alignParentStart="true" />
+         />
 
 </RelativeLayout>
