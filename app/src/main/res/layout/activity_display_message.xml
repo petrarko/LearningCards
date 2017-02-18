@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="utf-8"?>
+<android.support.design.widget.CoordinatorLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:orientation="vertical" android:layout_width="match_parent"
+    android:id="@+id/activity_display_message"
+    android:layout_height="match_parent">
+
+    <Button
+        android:text="@string/OK"
+        android:layout_width="match_parent"
+        android:layout_gravity="bottom|center"
+        android:id="@+id/button"
+        android:onClick="backToMain"
+        android:layout_height="87dp" />
+
+    <WebView
+        android:text="@string/text_about"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/text_about" />
+</android.support.design.widget.CoordinatorLayout>

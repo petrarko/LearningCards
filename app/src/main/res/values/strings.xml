@@ -1,3 +1,12 @@
 <resources>
-    <string name="app_name">Да будет мир</string>
+    <string name="app_name">Learn it!</string>
+    <string name="take_picture">Take a picture</string>
+    <string name="invert">Invert current</string>
+    <string name="invertAll">Invert All</string>
+    <string name="deleteCurrent">Delete</string>
+    <string name="default_text">Load your pictures!</string>
+    <string name="about">About</string>
+    <string name="About">About</string>
+    <string name="OK">OK</string>
+    <string name="text_about">qwd</string>
 </resources>

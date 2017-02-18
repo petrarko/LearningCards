@@ -1,8 +1,9 @@
-package com.example.aguitelson.helloworld;
+package com.aguitelson.thirdversion;
 
 import android.content.Context;
 import android.support.test.InstrumentationRegistry;
 import android.support.test.runner.AndroidJUnit4;
+import android.util.Log;
 
 import org.junit.Test;
 import org.junit.runner.RunWith;
@@ -21,6 +22,13 @@ public class ExampleInstrumentedTest {
         // Context of the app under test.
         Context appContext = InstrumentationRegistry.getTargetContext();
 
-        assertEquals("com.example.aguitelson.helloworld", appContext.getPackageName());
+        assertEquals("com.aguitelson.thirdversion", appContext.getPackageName());
     }
+
+    @Test
+    public void testNameGenerator(){
+        assertTrue(FileNameGenerator.isFileNameMatch(FileNameGenerator.generatePictureName(FilePrefix.FIRST), FilePrefix.FIRST));
+        assertTrue(FileNameGenerator.isFileNameMatch(FileNameGenerator.generatePictureName(FilePrefix.SECOND), FilePrefix.SECOND));
+    }
+
 }

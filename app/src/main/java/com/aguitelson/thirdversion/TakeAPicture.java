@@ -1,4 +1,4 @@
-package com.example.aguitelson.helloworld;
+package com.aguitelson.thirdversion;
 
 import android.content.Intent;
 import android.net.Uri;
@@ -6,11 +6,11 @@ import android.os.Environment;
 import android.provider.MediaStore;
 import android.support.v4.content.FileProvider;
 import android.support.v7.app.AppCompatActivity;
+import android.util.Log;
 
 import java.io.File;
 import java.io.IOException;
-import java.text.SimpleDateFormat;
-import java.util.Date;
+import java.util.UUID;
 
 /**
  * Created by aguitelson on 04.02.17.
@@ -18,56 +18,47 @@ import java.util.Date;
 
 public class TakeAPicture {
     static final int REQUEST_TAKE_PHOTO = 1;
-    static String mCurrentPhotoPath;
-
-
-     static void galleryAddPic(AppCompatActivity activity) {
-        Intent mediaScanIntent = new Intent(Intent.ACTION_MEDIA_SCANNER_SCAN_FILE);
-        File f = new File(mCurrentPhotoPath);
-        Uri contentUri = Uri.fromFile(f);
-        mediaScanIntent.setData(contentUri);
-         activity.sendBroadcast(mediaScanIntent);
-    }
 
 
 
-    private static File createImageFile(AppCompatActivity activity) throws IOException {
-        // Create an image file name
-        String timeStamp = new SimpleDateFormat("yyyyMMdd_HHmmss").format(new Date());
-        String imageFileName = "JPEG_" + timeStamp + "_";
+    private static File createImageFile(AppCompatActivity activity, String imageFileName) throws IOException {
         File storageDir = activity.getExternalFilesDir(Environment.DIRECTORY_PICTURES);
-        File image = File.createTempFile(
-                imageFileName,  /* prefix */
-                ".jpg",         /* suffix */
-                storageDir      /* directory */
-        );
-
-        // Save a file: path for use with ACTION_VIEW intents
-        mCurrentPhotoPath = image.getAbsolutePath();
-        return image;
+        File newFile = new File(storageDir.getAbsolutePath()+File.separator + imageFileName);
+        newFile.createNewFile();
+        return newFile;
     }
 
 
-    static void dispatchTakePictureIntent(AppCompatActivity activity) {
+    static void dispatchTakePictureIntent(AppCompatActivity activity, String fileName) {
         Intent takePictureIntent = new Intent(MediaStore.ACTION_IMAGE_CAPTURE);
         // Ensure that there's a camera activity to handle the intent
         if (takePictureIntent.resolveActivity(activity.getPackageManager()) != null) {
             // Create the File where the photo should go
             File photoFile = null;
             try {
-                photoFile = createImageFile(activity);
+                photoFile = createImageFile(activity, fileName);
             } catch (IOException ex) {
                 throw new RuntimeException(ex);
             }
             // Continue only if the File was successfully created
             if (photoFile != null) {
                 Uri photoURI = FileProviderWrapperClassJustForBug.getUriForFile(activity,
-                        "com.example.aguitelson.helloworld.fileprovider",
+                        "com.aguitelson.thirdversion",
                         photoFile);
                 takePictureIntent.putExtra(MediaStore.EXTRA_OUTPUT, photoURI);
+                takePictureIntent.putExtra(MediaStore.EXTRA_SIZE_LIMIT, 1000);
+
                 activity.startActivityForResult(takePictureIntent, REQUEST_TAKE_PHOTO);
             }
         }
+    }
+
+
+    static void makeTwoPictures(AppCompatActivity activity) {
+        UUID id = UUID.randomUUID();
+        // TODO investigate why reverse order??
+        dispatchTakePictureIntent(activity, FileNameGenerator.generatePictureName(id.toString(), FilePrefix.SECOND));
+        dispatchTakePictureIntent(activity, FileNameGenerator.generatePictureName(id.toString(), FilePrefix.FIRST));
     }
 
     // https://github.com/coomar2841/android-multipicker-library/issues/69

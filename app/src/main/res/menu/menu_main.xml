@@ -1,0 +1,30 @@
+<menu xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    tools:context="com.aguitelson.thirdversion.MainActivity">
+    <item
+        android:id="@+id/take_picture"
+        android:orderInCategory="100"
+        android:title="@string/take_picture"
+        app:showAsAction="never" />
+    <item
+        android:id="@+id/invert"
+        android:orderInCategory="100"
+        android:title="@string/invert"
+        app:showAsAction="never" />
+    <item
+        android:id="@+id/invertAll"
+        android:orderInCategory="100"
+        android:title="@string/invertAll"
+        app:showAsAction="never" />
+    <item
+        android:id="@+id/deleteCurrent"
+        android:orderInCategory="100"
+        android:title="@string/deleteCurrent"
+        app:showAsAction="never" />
+    <item
+        android:id="@+id/about"
+        android:orderInCategory="100"
+        android:title="@string/about"
+        app:showAsAction="never" />
+</menu>

@@ -1,4 +1,4 @@
-package com.example.aguitelson.helloworld;
+package com.aguitelson.thirdversion;
 
 import org.junit.Test;
 
