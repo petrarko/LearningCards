@@ -3,12 +3,15 @@ package com.aguitelson.thirdversion;
 import android.content.Context;
 import android.support.test.InstrumentationRegistry;
 import android.support.test.runner.AndroidJUnit4;
-import android.util.Log;
+
+import com.aguitelson.thirdversion.enums.FilePrefix;
+import com.aguitelson.thirdversion.tools.FileNameGenerator;
 
 import org.junit.Test;
 import org.junit.runner.RunWith;
 
-import static org.junit.Assert.*;
+import static org.junit.Assert.assertEquals;
+import static org.junit.Assert.assertTrue;
 
 /**
  * Instrumentation test, which will execute on an Android device.
@@ -26,7 +29,7 @@ public class ExampleInstrumentedTest {
     }
 
     @Test
-    public void testNameGenerator(){
+    public void testNameGenerator() {
         assertTrue(FileNameGenerator.isFileNameMatch(FileNameGenerator.generatePictureName(FilePrefix.FIRST), FilePrefix.FIRST));
         assertTrue(FileNameGenerator.isFileNameMatch(FileNameGenerator.generatePictureName(FilePrefix.SECOND), FilePrefix.SECOND));
     }

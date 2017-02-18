@@ -9,7 +9,7 @@
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
         <activity
-            android:name=".MainActivity"
+            android:name=".actvities.MainActivity"
             android:label="@string/app_name"
             android:theme="@style/AppTheme.NoActionBar">
             <intent-filter>
@@ -19,11 +19,12 @@
             </intent-filter>
         </activity>
         <activity
-            android:name=".DisplayMessageActivity"
+            android:name=".actvities.AboutProgramActivity"
             android:label="@string/About"
             android:theme="@style/AppTheme.NoActionBar">
 
         </activity>
+
         <provider
             android:name="android.support.v4.content.FileProvider"
             android:authorities="com.aguitelson.thirdversion"
@@ -34,7 +35,8 @@
                 android:resource="@xml/file_paths"></meta-data>
         </provider>
     </application>
-    <uses-feature android:name="android.hardware.camera"
+    <uses-feature
+        android:name="android.hardware.camera"
         android:required="true" />
     <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" />
 </manifest>

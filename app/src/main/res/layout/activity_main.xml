@@ -8,18 +8,17 @@
 
 
     android:fitsSystemWindows="true"
-    tools:context="com.aguitelson.thirdversion.MainActivity">
-
+    tools:context="com.aguitelson.thirdversion.actvities.MainActivity">
 
 
     <ProgressBar
         android:id="@+id/progressbar"
+        style="@android:style/Widget.ProgressBar.Large"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:visibility="invisible"
         android:layout_gravity="center|center"
-        style="@android:style/Widget.ProgressBar.Large"
-        android:gravity="center_horizontal|center_vertical" />
+        android:gravity="center_horizontal|center_vertical"
+        android:visibility="invisible" />
 
 
     <android.support.design.widget.FloatingActionButton
@@ -46,10 +45,10 @@
         android:layout_height="match_parent">
 
         <android.support.design.widget.AppBarLayout
+            android:id="@+id/appBarLayout"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:theme="@style/AppTheme.AppBarOverlay"
-            android:id="@+id/appBarLayout">
+            android:theme="@style/AppTheme.AppBarOverlay">
 
             <android.support.v7.widget.Toolbar
                 android:id="@+id/toolbar"
@@ -60,19 +59,19 @@
 
 
         </android.support.design.widget.AppBarLayout>
+
         <ImageView
             android:id="@+id/imageView"
             android:layout_width="match_parent"
             android:layout_height="480dp"
 
 
-            android:fitsSystemWindows="true"
-
             android:layout_alignParentBottom="true"
+
             android:layout_alignParentLeft="true"
             android:layout_alignParentStart="true"
-            android:layout_below="@+id/appBarLayout" />
-
+            android:layout_below="@+id/appBarLayout"
+            android:fitsSystemWindows="true" />
 
 
     </RelativeLayout>

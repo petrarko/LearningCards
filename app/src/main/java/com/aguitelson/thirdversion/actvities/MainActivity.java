@@ -1,4 +1,4 @@
-package com.aguitelson.thirdversion;
+package com.aguitelson.thirdversion.actvities;
 
 import android.content.Intent;
 import android.os.Bundle;
@@ -6,22 +6,28 @@ import android.support.design.widget.FloatingActionButton;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
 import android.view.GestureDetector;
-import android.view.MotionEvent;
-import android.view.View;
 import android.view.Menu;
 import android.view.MenuItem;
+import android.view.MotionEvent;
+import android.view.View;
 import android.widget.ImageView;
 import android.widget.TextView;
 
-public class MainActivity extends AppCompatActivity {
-    private final MainActivity activity = this;
-    public final static String EXTRA_MESSAGE = "com.aguitelson.thirdversion.MESSAGE";
+import com.aguitelson.thirdversion.tools.PictureManager;
+import com.aguitelson.thirdversion.tools.GestureListener;
+import com.aguitelson.thirdversion.tools.PictureLoader;
+import com.aguitelson.thirdversion.R;
+import com.aguitelson.thirdversion.tools.TakeAPicture;
+import com.aguitelson.thirdversion.tools.Toasts;
 
+public class MainActivity extends AppCompatActivity {
+    public final static String EXTRA_MESSAGE = "com.aguitelson.thirdversion.MESSAGE";
+    private final MainActivity activity = this;
+    public PictureManager fileManager;
     MenuItem invertItem;
     MenuItem invertAllItem;
     MenuItem deleteItem;
     TextView text;
-    FileManager fileManager;
     PictureLoader pictureLoader;
 
     GestureDetector gdt = new GestureDetector(new GestureListener(activity));
@@ -44,7 +50,7 @@ public class MainActivity extends AppCompatActivity {
         FloatingActionButton fab = (FloatingActionButton) findViewById(R.id.fab);
         fab.setOnTouchListener(new ShowPictureListener());
         text = (TextView) findViewById(R.id.textView);
-        fileManager = new FileManager(activity);
+        fileManager = new PictureManager(activity);
         pictureLoader = new PictureLoader(activity);
 
         gdt = new GestureDetector(new GestureListener(activity));
@@ -55,7 +61,7 @@ public class MainActivity extends AppCompatActivity {
     }
 
     public void sendMessage() {
-        Intent intent = new Intent(this, DisplayMessageActivity.class);
+        Intent intent = new Intent(this, AboutProgramActivity.class);
         intent.putExtra(EXTRA_MESSAGE, "hello!");
         startActivity(intent);
     }
@@ -66,36 +72,10 @@ public class MainActivity extends AppCompatActivity {
             Toasts.showToasts("No pictures!", activity);
             return;
         }
-        if (fileManager.getCurrentFileName() != null && fileManager.getSetOfMainFiles().size() == 1){
+        if (fileManager.getCurrentFileName() != null && fileManager.getSetOfMainFiles().size() == 1) {
             return;
         }
         pictureLoader.loadPicture(fileManager.generateRandomFile());
-    }
-
-
-    class ShowPictureListener implements View.OnTouchListener {
-
-
-        @Override
-        public boolean onTouch(View v, MotionEvent event) {
-            if(fileManager.getCurrentFileName() == null){
-                Toasts.showToasts("Load your pictures!", activity);
-                return true;
-            }
-            switch (event.getAction() & MotionEvent.ACTION_MASK) {
-                case MotionEvent.ACTION_DOWN:
-                    pictureLoader.loadPicture(fileManager.getPairForCurrentFile());
-                    break;
-                case MotionEvent.ACTION_UP:
-                    pictureLoader.loadPicture(fileManager.getPairForCurrentFile());
-                    break;
-                default:
-                    return true;
-            }
-
-            return true;
-
-        }
     }
 
     @Override
@@ -139,8 +119,8 @@ public class MainActivity extends AppCompatActivity {
 
         if (id == R.id.deleteCurrent) {
             fileManager.deleteCurrentPicture();
-            if(!fileManager.picturesExist()){
-                ImageView imageView = (ImageView)findViewById(R.id.imageView);
+            if (!fileManager.picturesExist()) {
+                ImageView imageView = (ImageView) findViewById(R.id.imageView);
                 imageView.setImageResource(0);
                 fileManager.setCurrentFileName(null);
                 text.setVisibility(View.VISIBLE);
@@ -166,7 +146,7 @@ public class MainActivity extends AppCompatActivity {
             invertItem.setEnabled(fileManager.picturesExist());
             invertAllItem.setEnabled(fileManager.picturesExist());
         }
-        if(deleteItem!=null){
+        if (deleteItem != null) {
             deleteItem.setEnabled(fileManager.picturesExist());
         }
     }
@@ -180,6 +160,30 @@ public class MainActivity extends AppCompatActivity {
         }
     }
 
+    class ShowPictureListener implements View.OnTouchListener {
+
+
+        @Override
+        public boolean onTouch(View v, MotionEvent event) {
+            if (fileManager.getCurrentFileName() == null) {
+                Toasts.showToasts("Load your pictures!", activity);
+                return true;
+            }
+            switch (event.getAction() & MotionEvent.ACTION_MASK) {
+                case MotionEvent.ACTION_DOWN:
+                    pictureLoader.loadPicture(fileManager.getPairForCurrentFile());
+                    break;
+                case MotionEvent.ACTION_UP:
+                    pictureLoader.loadPicture(fileManager.getPairForCurrentFile());
+                    break;
+                default:
+                    return true;
+            }
+
+            return true;
+
+        }
+    }
 
 
 }

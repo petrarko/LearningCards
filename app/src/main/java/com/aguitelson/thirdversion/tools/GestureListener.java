@@ -1,9 +1,9 @@
-package com.aguitelson.thirdversion;
+package com.aguitelson.thirdversion.tools;
 
 import android.view.GestureDetector;
 import android.view.MotionEvent;
 
-import java.util.Random;
+import com.aguitelson.thirdversion.actvities.MainActivity;
 
 /**
  * Created by aguitelson on 07.02.17.
@@ -20,10 +20,10 @@ public class GestureListener extends GestureDetector.SimpleOnGestureListener {
 
     @Override
     public boolean onFling(MotionEvent e1, MotionEvent e2, float velocityX, float velocityY) {
-        if(e1.getX() - e2.getX() > SWIPE_MIN_DISTANCE && Math.abs(velocityX) > SWIPE_THRESHOLD_VELOCITY) {
+        if (e1.getX() - e2.getX() > SWIPE_MIN_DISTANCE && Math.abs(velocityX) > SWIPE_THRESHOLD_VELOCITY) {
             activity.showNextPicture();
             return false; // Right to left
-        }  else if (e2.getX() - e1.getX() > SWIPE_MIN_DISTANCE && Math.abs(velocityX) > SWIPE_THRESHOLD_VELOCITY) {
+        } else if (e2.getX() - e1.getX() > SWIPE_MIN_DISTANCE && Math.abs(velocityX) > SWIPE_THRESHOLD_VELOCITY) {
             activity.showNextPicture();
             return false; // Left to right
         }

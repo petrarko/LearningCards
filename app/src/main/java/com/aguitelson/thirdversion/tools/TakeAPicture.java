@@ -1,4 +1,4 @@
-package com.aguitelson.thirdversion;
+package com.aguitelson.thirdversion.tools;
 
 import android.content.Intent;
 import android.net.Uri;
@@ -6,7 +6,8 @@ import android.os.Environment;
 import android.provider.MediaStore;
 import android.support.v4.content.FileProvider;
 import android.support.v7.app.AppCompatActivity;
-import android.util.Log;
+
+
 
 import java.io.File;
 import java.io.IOException;
@@ -17,13 +18,12 @@ import java.util.UUID;
  */
 
 public class TakeAPicture {
-    static final int REQUEST_TAKE_PHOTO = 1;
-
+    public static final int REQUEST_TAKE_PHOTO = 1;
 
 
     private static File createImageFile(AppCompatActivity activity, String imageFileName) throws IOException {
         File storageDir = activity.getExternalFilesDir(Environment.DIRECTORY_PICTURES);
-        File newFile = new File(storageDir.getAbsolutePath()+File.separator + imageFileName);
+        File newFile = new File(storageDir.getAbsolutePath() + File.separator + imageFileName);
         newFile.createNewFile();
         return newFile;
     }
@@ -54,11 +54,11 @@ public class TakeAPicture {
     }
 
 
-    static void makeTwoPictures(AppCompatActivity activity) {
+    public static void makeTwoPictures(AppCompatActivity activity) {
         UUID id = UUID.randomUUID();
         // TODO investigate why reverse order??
-        dispatchTakePictureIntent(activity, FileNameGenerator.generatePictureName(id.toString(), FilePrefix.SECOND));
-        dispatchTakePictureIntent(activity, FileNameGenerator.generatePictureName(id.toString(), FilePrefix.FIRST));
+        dispatchTakePictureIntent(activity, FileNameGenerator.generatePictureName(id.toString(), FileNameGenerator.FilePrefix.SECOND));
+        dispatchTakePictureIntent(activity, FileNameGenerator.generatePictureName(id.toString(), FileNameGenerator.FilePrefix.FIRST));
     }
 
     // https://github.com/coomar2841/android-multipicker-library/issues/69
